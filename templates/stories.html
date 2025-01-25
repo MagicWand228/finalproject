@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Історії</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        h2 {
+            color: #333;
+        }
+        .story-form {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 500px;
+        }
+        textarea {
+            width: 100%;
+            height: 100px;
+            padding: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 16px;
+            resize: none;
+            outline: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 15px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+        .stories {
+            margin-top: 20px;
+            width: 100%;
+            max-width: 600px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow-y: auto;
+            max-height: 300px;
+        }
+        .story {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .story:last-child {
+            border-bottom: none;
+        }
+        .nickname {
+            font-weight: bold;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+    <h2>Історії користувачів</h2>
+    <form class="story-form" method="post">
+        <textarea name="story" placeholder="Розкажіть свою історію (мінімум 24 символи)" required minlength="24"></textarea>
+        <button type="submit">Розповісти свою історію</button>
+    </form>
+    
+    <div class="stories">
+        {% for story in stories %}
+            <div class="story">
+                <p><span class="nickname">{{ story.split(':')[0] }}</span>: {{ story.split(':')[1] }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
