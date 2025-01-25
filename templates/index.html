@@ -4,12 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вхід в чат</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #007BFF, #00d2ff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+        }
+        input[type="text"]:focus {
+            border-color: #007BFF;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
 </head>
 <body>
-    <h2>Введіть ваш нікнейм:</h2>
-    <form method="post">
-        <input type="text" name="nickname" required>
-        <button type="submit">Увійти</button>
-    </form>
+    <div class="container">
+        <h2>Введіть ваш нікнейм</h2>
+        <form method="post">
+            <input type="text" name="nickname" placeholder="Ваш нікнейм" required>
+            <button type="submit">Увійти</button>
+        </form>
+    </div>
 </body>
 </html>

@@ -5,6 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Глобальний чат</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        #chat-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 20px;
+        }
+        #messages {
+            list-style: none;
+            padding: 0;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        #messages li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        #chat-form {
+            display: flex;
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+        #message {
+            flex: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            font-size: 16px;
+            outline: none;
+        }
+        button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-left: 10px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #0056b3;
+            transform: scale(1.05);
+        }
+    </style>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const socket = io();
@@ -22,18 +88,21 @@
 
             socket.on('message', (msg) => {
                 const item = document.createElement('li');
-                item.textContent = msg;
+                item.innerHTML = msg;
                 messages.appendChild(item);
+                messages.scrollTop = messages.scrollHeight;
             });
         });
     </script>
 </head>
 <body>
     <h2>Глобальний чат</h2>
-    <ul id="messages"></ul>
-    <form id="chat-form">
-        <input id="message" autocomplete="off">
-        <button>Надіслати</button>
-    </form>
+    <div id="chat-container">
+        <ul id="messages"></ul>
+        <form id="chat-form">
+            <input id="message" autocomplete="off" placeholder="Введіть повідомлення..." required>
+            <button type="submit">Надіслати</button>
+        </form>
+    </div>
 </body>
 </html>
